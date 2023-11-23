@@ -15,7 +15,7 @@ public class Main {
             System.out.println("Spieler " + aktuellerSpieler + ", Bitte Koordinat 2 eingeben: ");
             b = scanner.nextInt();
             validerZug(feld,  a, b);
-            if (gewonnen(feld) || spielUnentschieden()) {
+            if (gewonnen(feld) || spielUnentschieden(feld)) {
                 printArray2();
                 System.out.println(" Spieler!"+" "+aktuellerSpieler+" "+"hat gewonnen!");
                 break;
@@ -89,10 +89,10 @@ public class Main {
         return (array[0][0] != '-' && array[0][0] == array[1][1] && array[1][1] == array[2][2]) ||
                 (array[0][2] != '-' && array[0][2] == array[1][1] && array[1][1] == array[2][0]);
     }
-    private static boolean spielUnentschieden() {
+    private static boolean spielUnentschieden(char[][]array) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if (feld[i][j] == '-') {
+                if (array[i][j] == '-') {
                     return false;
                 }
             }
