@@ -5,36 +5,37 @@ public class Main {
     private static char aktuellerSpieler = 'X';
 
     public static void main(String[] args) {
-        int a,b;
+        char[][] feld = {
+                {'-', '-', '-'},
+                {'-', '-', '-'},
+                {'-', '-', '-'}
+                         };
+            int a,b;
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            printArray2();
+            printArray2(feld);
             System.out.println("Spieler " + aktuellerSpieler + ", Bitte Koordinat 1 eingeben: ");
             a = scanner.nextInt();
             System.out.println("Spieler " + aktuellerSpieler + ", Bitte Koordinat 2 eingeben: ");
             b = scanner.nextInt();
             validerZug(feld,  a, b);
             if (gewonnen(feld) || spielUnentschieden(feld)) {
-                printArray2();
-                System.out.println(" Spieler!"+" "+aktuellerSpieler+" "+"hat gewonnen!");
+                printArray2(feld);
+                System.out.println(" Spieler"+" "+aktuellerSpieler+" "+"hat gewonnen!");
                 break;
             }
             spielerWechseln();
         }
         }
 
-    private static char[][] feld = {
-            {'-', '-', '-'},
-            {'-', '-', '-'},
-            {'-', '-', '-'}
-    };
-    private static void printArray2() {
+
+    private static void printArray2(char[][]array) {
         System.out.println("  0 1 2");
         for (int i = 0; i < 3; i++) {
             System.out.print(i + " ");
             for (int j = 0; j < 3; j++) {
-                System.out.print(feld[i][j] + " ");
+                System.out.print(array[i][j] + " ");
             }
             System.out.println();
         }
