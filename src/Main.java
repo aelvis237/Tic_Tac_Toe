@@ -12,7 +12,7 @@ public class Main {
                          };
             int a,b;
         Scanner scanner = new Scanner(System.in);
-
+         int zahl=9;
         while (true) {
             printArray2(feld);
             System.out.println("Spieler " + aktuellerSpieler + ", Bitte Koordinat 1 eingeben: ");
@@ -20,9 +20,14 @@ public class Main {
             System.out.println("Spieler " + aktuellerSpieler + ", Bitte Koordinat 2 eingeben: ");
             b = scanner.nextInt();
             validerZug(feld,  a, b);
+            zahl--;
             if (gewonnen(feld) || spielUnentschieden(feld)) {
                 printArray2(feld);
                 System.out.println(" Spieler"+" "+aktuellerSpieler+" "+"hat gewonnen!");
+                break;
+            }
+            else if (zahl==0) {
+                System.out.println("unentschieden");
                 break;
             }
             spielerWechseln();
@@ -62,6 +67,7 @@ public class Main {
             return aktuellerSpieler;
         }
 
+
     }
 
     private static boolean gewonnen(char[][] array) {
@@ -93,11 +99,12 @@ public class Main {
     private static boolean spielUnentschieden(char[][]array) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if (array[i][j] == '-') {
+                if ((array[i][j] == '-')||(!pruefeZeilen(array)||!pruefeSpalten(array)||!pruefeDiagonalen(array))) {
                     return false;
                 }
             }
         }
         return true;
     }
+
 }
